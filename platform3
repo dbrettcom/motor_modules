@@ -1,9 +1,9 @@
 module platform3(
-    input wire p3_on,			    // Signal from motor module to initiate platform3 module
-	  input wire clk,     		  // 50 MHz
-	  input wire [5:0] colour, 	// colour data input from colour sensor
-    output reg [3:0] GPIO_1,	// Output to the motor
-	  output reg p1_on			  	// Signal from platform3 module to initiate platform1 module
+    input wire p3_on,  	  	 // Signal from motor module to initiate platform3 module
+    input wire clk,      	 // 50 MHz
+    input wire [5:0] colour, 	 // colour data input from colour sensor
+    output reg [3:0] GPIO_1,	 // Output to the motor
+    output reg p1_on		 // Signal from platform3 module to initiate platform1 module
 );
 
 platform1 platform1_(.p1_on(p1_on));
@@ -40,11 +40,11 @@ reg [31:0] gre_return_timer = (50_000_000 * 0.250); // 90/360 back to feeder loc
 reg [31:0] blu_return_timer = (50_000_000 * 0.125); // 45/360 back to feeder location CW
 
 always @(posedge clk) begin
-    p3_on_internal <= p3_on; 			  // Store p3_on signal
+    p3_on_internal <= p3_on; 		// Store p3_on signal
 
     if (p3_on_internal == 1) begin 	// Check if p3 module ready to begin
     
-	  p3_on_internal <= 0; 				    // Then change back to 0
+    p3_on_internal <= 0; 		// Then change back to 0
 	 
     // RED Begin
     if (colour == 000001) begin
@@ -64,8 +64,8 @@ always @(posedge clk) begin
             cntr <= 0;
         end  
         end else begin
-        GPIO_1 <= 4'b0000; // Platform is back at the feeder location - stop motor
-        p1_on <= 1; 			// Calls platform1 module to tell it that it has return to feeder location and recieved new M&M
+        GPIO_1 <= 4'b0000; 	// Platform is back at the feeder location - stop motor
+        p1_on <= 1; 		// Calls platform1 module to tell it that it has return to feeder location and recieved new M&M
         end
     end // RED end
 
@@ -87,8 +87,8 @@ always @(posedge clk) begin
             cntr <= 0;
         end  
         end else begin
-        GPIO_1 <= 4'b0000; // Platform is back at the feeder location - stop motor
-        p1_on <= 1; 			// Calls platform1 module to tell it that it has return to feeder location and recieved new M&M
+        GPIO_1 <= 4'b0000; 	// Platform is back at the feeder location - stop motor
+        p1_on <= 1; 		// Calls platform1 module to tell it that it has return to feeder location and recieved new M&M
         end
     end // Brown end
 
@@ -110,8 +110,8 @@ always @(posedge clk) begin
             cntr <= 0;
         end  
         end else begin
-        GPIO_1 <= 4'b0000; // Platform is back at the feeder location - stop motor
-        p1_on <= 1; 			// Calls platform1 module to tell it that it has return to feeder location and recieved new M&M
+        GPIO_1 <= 4'b0000; 	// Platform is back at the feeder location - stop motor
+        p1_on <= 1; 		// Calls platform1 module to tell it that it has return to feeder location and recieved new M&M
         end
     end // Yellow end
 
@@ -133,8 +133,8 @@ always @(posedge clk) begin
             cntr <= 0;
         end  
         end else begin
-        GPIO_1 <= 4'b0000; // Platform is back at the feeder location - stop motor
-        p1_on <= 1; 			// Calls platform1 module to tell it that it has return to feeder location and recieved new M&M
+        GPIO_1 <= 4'b0000; 	// Platform is back at the feeder location - stop motor
+        p1_on <= 1; 		// Calls platform1 module to tell it that it has return to feeder location and recieved new M&M
         end
     end // Orange end
 
@@ -156,8 +156,8 @@ always @(posedge clk) begin
             cntr <= 0;
         end  
         end else begin
-        GPIO_1 <= 4'b0000; // Platform is back at the feeder location - stop motor
-        p1_on <= 1; 			// Calls platform1 module to tell it that it has return to feeder location and recieved new M&M
+        GPIO_1 <= 4'b0000; 	// Platform is back at the feeder location - stop motor
+        p1_on <= 1; 		// Calls platform1 module to tell it that it has return to feeder location and recieved new M&M
         end
     end // Blue end
 
@@ -179,8 +179,8 @@ always @(posedge clk) begin
             cntr <= 0;
         end  
         end else begin
-        GPIO_1 <= 4'b0000; // Platform is back at the feeder location - stop motor
-        p1_on <= 1; 			// Calls platform1 module to tell it that it has return to feeder location and recieved new M&M
+        GPIO_1 <= 4'b0000; 	// Platform is back at the feeder location - stop motor
+        p1_on <= 1; 		// Calls platform1 module to tell it that it has return to feeder location and recieved new M&M
         end
     end // Green end
   end // Motor end
