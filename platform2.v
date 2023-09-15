@@ -1,10 +1,10 @@
 module platform2(
-    input wire p2_on,				// signal from colour sensor module to initiate platform2 module
-    input wire clk,     			// 50 MHz
-	  input wire [5:0] colour, 		// colour data input from colour sensor
-	  output reg [3:0] GPIO_1,		// output to the physical motor turning the platform (1st motor)
-	  output reg motor_on				// output to "motor" module (that controls the 2nd motor)
-	 );
+    input wire p2_on,			// signal from colour sensor module to initiate platform2 module
+    input wire clk,     		// 50 MHz
+    input wire [5:0] colour, 		// colour data input from colour sensor
+    output reg [3:0] GPIO_1,		// output to the physical motor turning the platform (1st motor)
+    output reg motor_on			// output to "motor" module (that controls the 2nd motor)
+);
 	 
 motor motor_(.motor_on(motor_on));
 	
@@ -32,11 +32,11 @@ reg [31:0] blu_timer = (50_000_000 * 0.250); // Blue location   = 90/360
 reg [31:0] gre_timer = (50_000_000 * 0.375); // Green location  = 135/360
 
 always @(posedge clk) begin
-    p2_on_internal <= p2_on; 			  // Store p2_on signal
+    p2_on_internal <= p2_on; 		// Store p2_on signal
 
     if (p2_on_internal == 1) begin 	// Check if p2 module ready to begin
     
-	  p2_on_internal <= 0; 				    // Then change back to 0
+    p2_on_internal <= 0; 		// Then change back to 0
 
     // RED Begin
     if (colour == 000001) begin
@@ -56,7 +56,7 @@ always @(posedge clk) begin
             cntr <= 0;
         end  
         end else begin
-        GPIO_1 <= 4'b0000; // M&M is above it's respective colour bin - stop motor
+        GPIO_1 <= 4'b0000; 	 // M&M is above it's respective colour bin - stop motor
         motor_on <= 1;		 // Call Motor module to open latch and let M&M fall into bin
         end
     end // RED end
@@ -79,7 +79,7 @@ always @(posedge clk) begin
             cntr <= 0;
         end  
         end else begin
-        GPIO_1 <= 4'b0000; // M&M is above it's respective colour bin - stop motor
+        GPIO_1 <= 4'b0000; 	 // M&M is above it's respective colour bin - stop motor
         motor_on <= 1;		 // Call Motor module to open latch and let M&M fall into bin
         end
     end // Brown end
@@ -102,7 +102,7 @@ always @(posedge clk) begin
             cntr <= 0;
         end  
         end else begin
-        GPIO_1 <= 4'b0000; // M&M is above it's respective colour bin - stop motor
+        GPIO_1 <= 4'b0000; 	 // M&M is above it's respective colour bin - stop motor
         motor_on <= 1;		 // Call Motor module to open latch and let M&M fall into bin
         end
     end // Yellow end
@@ -125,7 +125,7 @@ always @(posedge clk) begin
             cntr <= 0;
         end  
         end else begin
-        GPIO_1 <= 4'b0000; // M&M is above it's respective colour bin - stop motor
+        GPIO_1 <= 4'b0000; 	 // M&M is above it's respective colour bin - stop motor
         motor_on <= 1;		 // Call Motor module to open latch and let M&M fall into bin
         end
     end // Orange end
@@ -148,7 +148,7 @@ always @(posedge clk) begin
             cntr <= 0;
         end  
         end else begin
-        GPIO_1 <= 4'b0000; // M&M is above it's respective colour bin - stop motor
+        GPIO_1 <= 4'b0000; 	 // M&M is above it's respective colour bin - stop motor
         motor_on <= 1;		 // Call Motor module to open latch and let M&M fall into bin
         end
     end // Blue end
@@ -171,7 +171,7 @@ always @(posedge clk) begin
             cntr <= 0;
         end  
         end else begin
-        GPIO_1 <= 4'b0000; // M&M is above it's respective colour bin - stop motor
+        GPIO_1 <= 4'b0000; 	 // M&M is above it's respective colour bin - stop motor
         motor_on <= 1;		 // Call Motor module to open latch and let M&M fall into bin
         end
     end // Green end
